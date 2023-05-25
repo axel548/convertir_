@@ -6,6 +6,10 @@ filename = input("Nombre del archivo: ")
 filename_json = filename + ".json"
 filename_excel = filename + ".xlsx"
 
+
+
+
+
 # Cargar el JSON desde un archivo
 with open(filename_json) as archivo:
     json_data = json.load(archivo)

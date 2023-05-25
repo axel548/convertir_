@@ -1,11 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Factura de Sujeto Excluido Electrónica v1",
-    "type": "object",
     "properties": {
         "identificacion" : {
-            "description" : "Identificación",
-            "type" : "object",
             "properties" : {
                 "version" : {
                     "type" : "integer",
@@ -96,87 +91,7 @@
                         "USD"
                     ]
                 }
-            },
-            "allOf" : [
-                {
-                    "if" : {
-                        "properties" : {
-                            "tipoOperacion" : {
-                                "const" : 1
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "tipoModelo" : {
-                                "const" : 1
-                            },
-                            "tipoContingencia" : {
-                                "type" : "null"
-                            },
-                            "motivoContin" : {
-                                "type" : "null"
-                            }
-                        }
-                    },
-                    "else" : {
-                        "properties" : {
-                            "tipoModelo" : {
-                                "enum" : [
-                                    2
-                                ]
-                            }
-                        }
-                    }
-                },
-                {
-                    "if" : {
-                        "properties" : {
-                            "tipoOperacion" : {
-                                "const" : 2
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "tipoContingencia" : {
-                                "type" : "integer"
-                            }
-                        }
-                    }
-                },
-                {
-                    "if" : {
-                        "properties" : {
-                            "tipoContingencia" : {
-                                "const" : 5
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "motivoContin" : {
-                                "type" : "string"
-                            }
-                        }
-                    }
-                }
-            ],
-            "additionalProperties" : false,
-            "required" : [
-                "version",
-                "ambiente",
-                "tipoDte",
-                "numeroControl",
-                "codigoGeneracion",
-                "tipoModelo",
-                "tipoOperacion",
-                "tipoContingencia",
-                "motivoContin",
-                "fecEmi",
-                "horEmi",
-                "tipoMoneda"
-            ]
+            }
         },
         "emisor" : {
             "type" : "object",
@@ -213,8 +128,6 @@
                     "minLength" : 1
                 },
                 "direccion" : {
-                    "type" : "object",
-                    "description" : "Dirección (Emisor)",
                     "properties" : {
                         "departamento" : {
                             "type" : "string",
@@ -232,200 +145,7 @@
                             "maxLength" : 200,
                             "minLength" : 1
                         }
-                    },
-                    "allOf" : [
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "01"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-2]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "02",
-                                            "10"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "03",
-                                            "07"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-6]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "04"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|[12][0-9]|3[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "05",
-                                            "08"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-2]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "06"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "09"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "11"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "12"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|20$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "13"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-6]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "14"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-8]$"
-                                    }
-                                }
-                            }
-                        }
-                    ],
-                    "additionalProperties" : false,
-                    "required" : [
-                        "departamento",
-                        "municipio",
-                        "complemento"
-                    ]
+                    }
                 },
                 "telefono" : {
                     "type" : "string",
@@ -476,26 +196,9 @@
                     "maxLength" : 100,
                     "minLength" : 3
                 }
-            },
-            "additionalProperties" : false,
-            "required" : [
-                "nit",
-                "nrc",
-                "nombre",
-                "codActividad",
-                "descActividad",
-                "direccion",
-                "telefono",
-                "codEstableMH",
-                "codEstable",
-                "codPuntoVentaMH",
-                "codPuntoVenta",
-                "correo"
-            ]
+            }
         },
         "sujetoExcluido" : {
-            "type" : "object",
-            "description" : "Receptor",
             "properties" : {
                 "tipoDocumento":{
                     "type":"string",
@@ -538,8 +241,6 @@
                     "minLength" : 1
                 },
                 "direccion" : {
-                    "type" : "object",
-                    "description" : "Dirección (Receptor)",
                     "properties" : {
                         "departamento" : {
                             "type" : "string",
@@ -557,200 +258,7 @@
                             "maxLength" : 200,
                             "minLength" : 1
                         }
-                    },
-                    "allOf" : [
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "01"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-2]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "02",
-                                            "10"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "03",
-                                            "07"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-6]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "04"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|[12][0-9]|3[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "enum" : [
-                                            "05",
-                                            "08"
-                                        ]
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-2]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "06"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "09"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "11"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-3]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "12"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|20$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "13"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-9]|2[0-6]$"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "if" : {
-                                "properties" : {
-                                    "departamento" : {
-                                        "const" : "14"
-                                    }
-                                }
-                            },
-                            "then" : {
-                                "properties" : {
-                                    "municipio" : {
-                                        "pattern" : "^0[1-9]|1[0-8]$"
-                                    }
-                                }
-                            }
-                        }
-                    ],
-                    "additionalProperties" : false,
-                    "required" : [
-                        "departamento",
-                        "municipio",
-                        "complemento"
-                    ]
+                    }
                 },
                 "telefono" : {
                     "type" : [
@@ -770,64 +278,10 @@
                     "format" : "email",
                     "maxLength" : 100
                 }
-            },
-            "allOf" : [
-                {
-                    "if" : {
-                        "properties" : {
-                            "tipoDocumento" : {
-                                "const" : "36"
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "numDocumento" : {
-                                "pattern" : "^([0-9]{14}|[0-9]{9})$"
-                            },
-                            "nrc" : {
-                                "type" : [
-                                    "string",
-                                    "null"
-                                ]
-                            }
-                        }
-                    }
-                },
-                {
-                    "if" : {
-                        "properties" : {
-                            "tipoDocumento" : {
-                                "const" : "13"
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "numDocumento" : {
-                                "pattern" : "^[0-9]{9}$"
-                            }
-                        }
-                    }
-                }
-            ],
-            "additionalProperties" : false,
-            "required" : [
-                "tipoDocumento",
-                "numDocumento",
-                "nombre",
-                "codActividad",
-                "descActividad",
-                "direccion",
-                "telefono",
-                "correo"
-            ]
+            }
         },
         "cuerpoDocumento" : {
-            "type" : "array",
-            "description" : "Cuerpo del Documento",
             "items" : {
-                "type" : "object",
                 "properties" : {
                     "numItem" : {
                         "type" : "integer",
@@ -948,26 +402,12 @@
                         "exclusiveMaximum" : 100000000000,
                         "multipleOf" : 0.00000001
                     }
-                },
-                "additionalProperties" : false,
-                "required" : [
-                    "numItem",
-                    "tipoItem",
-                    "cantidad",
-                    "codigo",
-                    "uniMedida",
-                    "descripcion",
-                    "precioUni",
-                    "montoDescu",
-                    "compra"
-                ]
+                }
             },
             "minItems" : 1,
             "maxItems" : 2000
         },
         "resumen" : {
-            "type" : "object",
-            "description" : "Resumen",
             "properties" : {
                 "totalCompra" : {
                     "type" : "number",
@@ -1036,13 +476,7 @@
                     ]
                 },
                 "pagos" : {
-                    "description" : "Pagos",
-                    "type" : [
-                        "array",
-                        "null"
-                    ],
                     "items" : {
-                        "type" : "object",
                         "properties" : {
                             "codigo" : {
                                 "type" : "string",
@@ -1086,15 +520,7 @@
                                     "null"
                                 ]
                             }
-                        },
-                        "additionalProperties" : false,
-                        "required" : [
-                            "codigo",
-                            "montoPago",
-                            "referencia",
-                            "plazo",
-                            "periodo"
-                        ]
+                        }
                     },
                     "minItems" : 1
                 },
@@ -1106,59 +532,10 @@
                     ],
                     "maxLength":3000
                 }
-            },
-            "allOf" : [
-                {
-                    "if" : {
-                        "properties" : {
-                            "condicionOperacion" : {
-                                "enum" : [
-                                    2
-                                ]
-                            }
-                        }
-                    },
-                    "then" : {
-                        "properties" : {
-                            "pagos" : {
-                                "items" : {
-                                    "properties" : {
-                                        "plazo" : {
-                                            "type" : "string"
-                                        },
-                                        "periodo" : {
-                                            "type" : "number"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            ],
-            "additionalProperties" : false,
-            "required" : [
-                "totalCompra",
-                "descu",
-                "totalDescu",
-                "subTotal",
-                "ivaRete1",
-                "reteRenta",
-                "totalPagar",
-                "totalLetras",
-                "condicionOperacion",
-                "pagos",
-                "observaciones"
-            ]
+            }
         },
         "apendice" : {
-            "description" : "Apéndice",
-            "type" : [
-                "array",
-                "null"
-            ],
             "items" : {
-                "type" : "object",
                 "properties" : {
                     "campo" : {
                         "type" : "string",
@@ -1175,25 +552,10 @@
                         "description" : "Valor/Dato",
                         "maxLength" : 150
                     }
-                },
-                "additionalProperties" : false,
-                "required" : [
-                    "campo",
-                    "etiqueta",
-                    "valor"
-                ]
+                }
             },
             "minItems" : 1,
             "maxItems" : 10
         }
-    },
-    "additionalProperties" : false,
-    "required" : [
-        "identificacion",
-        "emisor",
-        "sujetoExcluido",
-        "cuerpoDocumento",
-        "resumen",
-        "apendice"
-    ]
+    }
 }
